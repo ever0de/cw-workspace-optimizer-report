@@ -1,0 +1,33 @@
+[package]
+name = "golgi-state-machine-context"
+version = "0.1.0"
+authors = ["frostornge <frostornge@gmail.com>"]
+edition = "2018"
+
+exclude = ["contract.wasm", "hash.txt"]
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[features]
+# for more explicit tests, cargo test --features=backtraces
+backtraces = ["cosmwasm-std/backtraces"]
+# use library feature to disable all instantiate/execute/query exports
+library = []
+
+[dependencies]
+# Internal dependencies
+cosm-msg = { version = "0.1.0", path = "../../../crates/msg" }
+
+# External dependencies
+cosmwasm-std = "1"
+cosmwasm-storage = "1"
+cw-storage-plus = "0.13"
+cw2 = "0.13"
+schemars = "0.8"
+serde = { version = "1", default-features = false, features = ["derive"] }
+thiserror = "1"
+
+[dev-dependencies]
+cosmwasm-schema = "1"
+cw-multi-test = "0.13"
